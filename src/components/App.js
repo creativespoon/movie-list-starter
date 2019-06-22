@@ -4,6 +4,7 @@ import Movie from "./Movie.js"
 import NavBar from "./NavBar.js"
 import exampleMovies from '../data/exampleMovies.js'
 import Test from "./Test.js"
+import MovieList from "./MovieList.js"
 
 class App extends React.Component {
   constructor (props) {
@@ -33,16 +34,22 @@ class App extends React.Component {
     // if(exampleMovies[0].title.contains(value)){
     //   console.log("it it a MATCHHHH!")
     // }
-    console.log("the value is", value); 
+    // console.log("the value is", value); 
 
     // console.log(exampleMovies[0].title);
-    var test = exampleMovies[0].title;
+    // var test = exampleMovies[0].title;
     // if (test.includes('mean')) {
     //   console.log("ITS A MATCHHHHH")
     // }
-    console.log('test is', test);
+    // console.log('test is', test);
 
-    test.includes(value)? console.log('is') : console.log('is not');
+    var filteredMovies;
+    exampleMovies.map((movie) => {
+      filteredMovies = exampleMovies.filter(movie => movie.title.toLowerCase().includes(value.toLowerCase()));
+    });
+    console.log(filteredMovies);
+    
+    // test.includes(value)? console.log('is') : console.log('is not');
 
     this.setState({
       [name]: value,
@@ -52,9 +59,7 @@ class App extends React.Component {
   //create a filter between state and files
 
   render () {
-    var movieRows = exampleMovies.map((movie) => {
-      return <Movie title = {movie.title} />
-    });
+
     const {searchTerm} = this.state;
     return (
       <div>
@@ -66,7 +71,7 @@ class App extends React.Component {
             <tr>
               <td>
               {/* <Test text = {this.state}/> */}
-              <div className = "navbar">
+              <div className = "searchbar">
                 <form>
                   <input type="text" placeholder="Search..." value={searchTerm} onChange={this.handleInputChange} name="searchTerm"/>
                 </form>
@@ -74,7 +79,8 @@ class App extends React.Component {
 
                 <table>
                   <tbody>
-                  {movieRows}
+                    <MovieList searchTerm = {this.state.searchTerm} movies = {exampleMovies}/>
+                    {/* {movieRows} */}
                   </tbody>
                 </table>
               </td>
