@@ -58,7 +58,6 @@ class App extends React.Component {
               <AddMovie onSubmit = {this.handleSubmit} handleInputChange = {this.handleInputChange}/>
               <SearchBar searchTerm = {searchTerm} handleInputChange = {this.handleInputChange} handleSubmit = {this.handleSubmit}/>
               <MovieList searchTerm = {this.state.searchTerm} movies = {this.props.movies}/>
-              {/* {generateMovieList()} */}
               </td>
             </tr>
           </tbody>
