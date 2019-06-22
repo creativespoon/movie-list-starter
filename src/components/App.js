@@ -5,22 +5,29 @@ import NavBar from "./NavBar.js"
 import exampleMovies from '../data/exampleMovies.js'
 import Test from "./Test.js"
 import MovieList from "./MovieList.js"
+import AddMovie from "./AddMovie.js"
+import SearchBar from "./SearchBar.js"
 
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {searchTerm: "", insertMovie: ""}
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange({target}) {
+    console.log(target);
     const {name, value} = target;
     this.setState({
       [name]: value,
     });
-    console.log('this is the stttate', this.state);
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    alert('A name was submitted: ' + this.state.insertMovie);
+  }
 
 
   //create a filter between state and files
@@ -37,37 +44,17 @@ class App extends React.Component {
             </tr>
             <tr>
               <td>
-              <div className = "searchbar">
-                <form>
-                  <input type="text" placeholder="Add movie title here" value={insertMovie} onChange={this.handleInputChange} name="insertMovie"/>
-                  <input type="submit" value="Add" />
-                </form>
-              </div>
-              <div className = "searchbar">
-                <form>
-                  <input type="text" placeholder="Search..." value={searchTerm} onChange={this.handleInputChange} name="searchTerm"/>
-                </form>
-              </div>
-
-                <table>
-                  <tbody>
-                    <MovieList searchTerm = {this.state.searchTerm} movies = {exampleMovies}/>
-                    {/* {movieRows} */}
-                  </tbody>
-                </table>
+              <AddMovie onSubmit = {this.handleSubmit} handleInputChange = {this.handleInputChange}/>
+              <SearchBar searchTerm = {searchTerm} handleInputChange = {this.handleInputChange}/>
+              <MovieList searchTerm = {this.state.searchTerm} movies = {exampleMovies}/>
               </td>
             </tr>
-            </tbody>
+          </tbody>
         </table>
       </div>
     )
   }
 }
-
-
-// var App = () => {
-//   return (<div>Whattttssssss up FUNCTIONALLLLL</div>)
-// }
 
 
 export default App;

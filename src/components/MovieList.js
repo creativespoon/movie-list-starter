@@ -7,16 +7,17 @@ var MovieList = (props) => {
   props.movies.map((movie) => {
     filteredMovies = props.movies.filter(movie => movie.title.toLowerCase().includes(props.searchTerm.toLowerCase()));
   });
-  console.log(filteredMovies);
   
   var movieRows = filteredMovies.map((movie) => {
-    return (<Movie title = {movie.title} />)
+    return (<Movie key = {movie.title} title = {movie.title} />)
   });
 
   
 
     return (
-      <div>{movieRows}</div>
+      <table>
+        <tbody>{movieRows}</tbody>
+      </table>
     )
 }
 
