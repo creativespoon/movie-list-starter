@@ -5,6 +5,7 @@ var SearchBar = (props) => {
     <div className = "searchbar">
     <form>
       <input type="text" placeholder="Search..." value={props.searchTerm} onChange={props.handleInputChange} name="searchTerm"/>
+      <input type="submit" onClick={props.handleSubmit} />
     </form>
     </div>
   )
