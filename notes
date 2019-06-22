@@ -1,0 +1,30 @@
+First things we did:
+
+In JSON set up scripts
+  "scripts": {
+    "start": "live-server dist",
+    "watch": "webpack -w"
+
+npm run watch
+npm install
+npm install react
+npm install react-dom
+
+problem solving webpack
+  npx webpack .
+  npm watch
+
+
+
+went to .babelrc
+- {
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react" //added this
+  ]
+}
+
+
+
+npm start
+npm run watch
